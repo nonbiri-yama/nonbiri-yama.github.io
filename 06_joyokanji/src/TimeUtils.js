@@ -1,0 +1,1 @@
+export function msToClockShort(o){const t=Math.floor(o/100),r=t%10,n=Math.floor(t/10),a=n%60,f=o=>String(o).padStart(2,"0");return`${f(Math.floor(n/60))}:${f(a)}.${r}`}export function msToFriendly(o){const t=Math.floor(o/1e3),r=Math.floor(t/60),n=t%60;return r<=0?`${n}びょう`:`${r}ふん${n}びょう`}

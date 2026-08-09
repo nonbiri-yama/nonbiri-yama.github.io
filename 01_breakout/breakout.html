@@ -1,0 +1,149 @@
+ <!-- © 2026 nonbiri-yama. All rights reserved.
+[商業利用・無断転載の禁止]
+本ソースコード、および関連するアセット（画像等）の無断複写、複製、転載、
+改変、配布、スクレイピング、および二次利用を固く禁じます。 -->
+
+ <!DOCTYPE html>
+<html lang="ja">
+
+<!-- headタグ、ブラウザのタブに表示される文字 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="シンプルなブロック崩しゲームです。打ち返すときにタップ／クリックするとドライブショットが打てるかも！？スマホ・PCで無料プレイ。">
+    <title>ブロック崩し - のんびりやま のゲーム</title>
+    <link rel="stylesheet" href="game.css">
+</head>
+
+<!-- ##################################################### -->
+<!-- bodyタグ、headを除く末尾まですべて -->
+<body>
+
+    <!-- ##################################################### -->
+    <!-- div(ad-container)、広告バナー、または、フォールバックバナー -->
+    <div id="ad-container">
+        <a href="https://nonbiri-yama.github.io/" class="fallback-banner">
+
+            <!-- div(banner-info)、バナー内の左側文字 -->
+            <div class="banner-info">
+                <span class="banner-site-name">のんびりやま のゲーム</span>
+                <span class="banner-url">https://nonbiri-yama.github.io/</span>
+            </div>
+            
+            <!-- div(banner-visual)、バナー内の右側イラスト -->
+            <div class="banner-visual"></div>
+        </a>
+    </div>
+
+    <!-- div(game-wrapper)、ゲーム画面本体 -->
+    <div id="game-wrapper">
+
+    <!-- ##################################################### -->
+    <!-- div(canvas-container)、パドルとブロックのエリア -->
+    <div id="canvas-container">
+        <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <!-- ##################################################### -->
+    <!-- div(input-container)、パドルの下のステータスエリア -->
+    <div id="input-container">
+
+        <!-- div(left-dancer)、左の人 -->
+        <div id="left-dancer" class="dancer-zone"></div>
+
+        <!-- div(status-display)、真ん中の3行の表示 -->
+        <div id="status-display">
+
+            <!-- div(status-row-stage)、ステージ数の表示 -->
+            <div id="status-row-stage">
+                <span id="stat-stage">STAGE 1 (ふつう)</span>
+            </div>
+
+            <!-- div(status-row-score)、得点の表示 -->
+            <div id="status-row-score">
+                <span id="stat-score">SCORE: 0000</span>
+            </div>
+
+            <!-- div(status-row-balls)、ボール数の表示 -->
+            <div id="status-row-balls">
+                <span id="stat-balls">ACTIVE: 1</span>
+            </div>
+        </div>
+
+        <!-- div(right-dancer)、右の人 -->
+        <div id="right-dancer" class="dancer-zone"></div>
+    </div>
+
+    <!-- ##################################################### -->
+    <!-- div(sub-controls)、難易度のエリア -->
+    <div id="sub-controls">
+
+        <!-- div(left-lives)、左の人の残り球数 -->
+        <div id="left-lives" class="lives-indicator">
+            <span class="ball-icon">●</span>×<span class="count">1</span>
+        </div>
+
+        <!-- div(difficulty-select)、難易度の選択肢 -->
+        <select id="difficulty-select">
+            <option value="slow">ゆっくり</option>
+            <option value="normal" selected>ふつう</option>
+            <option value="fast">はやめ</option>
+        </select>
+
+        <!-- div(right-lives)、右の人の残り球数 -->
+        <div id="right-lives" class="lives-indicator">
+            <span class="ball-icon">●</span>×<span class="count">1</span>
+        </div>
+
+    </div>
+
+    <!-- ##################################################### -->
+    <!-- div(description-area)、ゲーム説明 -->
+    <div id="description-area">
+
+        <!-- p、ゲーム説明 -->
+        <p>シンプルなブロック崩しゲームです。<br>
+        打ち返すときにタップ／クリックすると<br>
+        ドライブショットが打てるかも！？</p>
+
+        <!-- div(item-guide)、アイテムの説明 -->
+        <div class="item-guide">
+            <p class="guide-title">【アイテム】</p>
+            
+            <!-- ul/li、アイテムのリスト表示 -->
+            <ul>
+                <li>
+                    <span class="item-icon icon-triple">
+                        <span class="icon-text">×</span>
+                    </span>
+                    ：ステージ内のボールが3倍にふえる
+                </li>
+                <li>
+                    <span class="item-icon icon-extend">
+                        <span class="icon-text">←→</span>
+                    </span>
+                    ：パドルがのびる
+                </li>
+                <li>
+                    <span class="item-icon icon-life"></span>
+                    ：残りボールが左右1個ずつふえる
+                </li>
+            </ul>
+        </div>
+
+        <!-- a、トップページへのリンク -->
+        <a href="../index.html" id="top-link">トップページに戻る</a>
+
+    </div>
+
+
+    <!-- ##################################################### -->
+    <!-- footer(page-footer)、コピーライトのフッター -->
+    <footer id="page-footer">
+        <p>&copy; 2026 nonbiri-yama. All rights reserved.</p>
+    </footer>
+
+    <script type="module" src="main.js"></script>
+
+</body>
+</html>

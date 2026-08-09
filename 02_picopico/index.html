@@ -1,0 +1,164 @@
+ <!-- © 2026 nonbiri-yama. All rights reserved.
+[商業利用・無断転載の禁止]
+本ソースコード、および関連するアセット（画像等）の無断複写、複製、転載、
+改変、配布、スクレイピング、および二次利用を固く禁じます。 -->
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<!-- headタグ、ブラウザのタブに表示される文字 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="ポカポカゲーム。ハンマーと盾で1対1の対戦ゲームです。">
+    <title>ポカポカゲーム - のんびりやま のゲーム</title>
+    <link rel="stylesheet" href="./style_layout.css">
+    <link rel="stylesheet" href="./style_doll.css">
+</head>
+
+<!-- ##################################################### -->
+<!-- bodyタグ、headを除く末尾まですべて -->
+<body>
+
+    <!-- ##################################################### -->
+    <!-- div(ad-container)、広告バナー、または、フォールバックバナー -->
+    <!-- PCやタブレットは問題ないが、スマホだとバナーとコントロールバーの距離が狭すぎて
+    誤クリック対応ができないので、02_picopicoに関しては、バナー広告は無しとする。 -->
+
+
+
+    <!-- div(game-wrapper)、ゲーム画面本体 -->
+    <div id="game-wrapper">
+
+        <!-- ##################################################### -->
+        <!-- div(game-container)、人形とコントロールバーのエリア -->
+        <div id="game-container">
+            <canvas id="game-canvas"></canvas>
+            <div id="ui-layer">
+
+                <!-- div(container-1p)、左のコントローラバー -->
+                <div id="container-1p" class="slider-container">
+                    <div class="label-group">
+                        <kbd class="key-icon">A</kbd>
+                        <span class="label-guard">シールド</span>
+                    </div>
+                    <div id="slider-1p" class="controller-track">
+                        <div id="thumb-1p" class="slider-thumb"></div>
+                    </div>
+                    <div class="label-group">
+                        <span class="label-attack">ハンマー</span>
+                        <kbd class="key-icon">Z</kbd>
+                    </div>
+                </div>
+
+                <!-- div(container-2p)、右のコントローラバー -->
+                <div id="container-2p" class="slider-container">
+                    <div class="label-group">
+                        <kbd class="key-icon">K</kbd>
+                        <span class="label-guard">シールド</span>
+                    </div>
+                    <div id="slider-2p" class="controller-track">
+                        <div id="thumb-2p" class="slider-thumb"></div>
+                    </div>
+                    <div class="label-group">
+                        <span class="label-attack">ハンマー</span>
+                        <kbd class="key-icon">M</kbd>
+                    </div>
+                </div>
+
+                <!-- div(doll-1p)、左の人形 -->
+                <div id="doll-1p">
+                    <div class="doll-shield">
+                        <div class="shield-shaft"></div>
+                        <div class="shield-plate"></div>
+                    </div>
+                    <div class="joint-circle joint-shield"></div>
+                    <div class="doll-head">
+                        <img src="./assets/images/normal_f0_RGB_400px_260px_72dpi.png" alt="">
+                        <div class="hitbox-head"></div>
+                    </div>
+                    <div class="doll-body"></div>
+                    <div class="doll-body-outline"></div>
+                    <div class="joint-circle joint-hammer"></div>
+                    <div class="doll-hammer">
+                        <div class="hammer-shaft"></div>
+                        <div class="hammer-head"></div>
+                    </div>
+                </div>
+
+                <!-- div(doll-2p)、右の人形 -->
+                <div id="doll-2p">
+                    <div class="doll-hammer">
+                        <div class="hammer-shaft"></div>
+                        <div class="hammer-head"></div>
+                    </div>
+                    <div class="joint-circle joint-hammer"></div>
+                    <div class="doll-head">
+                        <img src="./assets/images/normal_f0_RGB_400px_260px_72dpi.png" alt="">
+                        <div class="hitbox-head"></div>
+                    </div>
+                    <div class="doll-body"></div>
+                    <div class="doll-body-outline"></div>
+                    <div class="joint-circle joint-shield"></div>
+                    <div class="doll-shield">
+                        <div class="shield-shaft"></div>
+                        <div class="shield-plate"></div>
+                    </div>
+                </div>
+
+                <!-- div(pedestal)、台座 -->
+                <div id="pedestal"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ##################################################### -->
+    <!-- div(sub-area)、ゲーム説明 -->
+    <div id="sub-area">
+
+        <!-- div(sub-card)、対戦相手と強さの設定 -->
+        <div class="sub-card">
+            <div class="setting-row">
+                <label class="setting-label">対戦相手</label>
+                <div class="setting-btns">
+                    <button class="game-btn active" id="btn-cpu">CPUと対戦</button>
+                    <button class="game-btn"        id="btn-2p" >2人対戦</button>
+                </div>
+            </div>
+            <div class="setting-row" id="row-level">
+                <label class="setting-label">CPUの強さ</label>
+                <div class="setting-btns">
+                    <button class="game-btn"        id="btn-easy"   data-level="1">やさしい</button>
+                    <button class="game-btn active" id="btn-normal" data-level="2">ふつう</button>
+                    <button class="game-btn"        id="btn-hard"   data-level="3">むずかしい</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- div(description-area)、ゲーム説明 -->
+        <div class="description-area">
+            <p class="game-desc">
+                あたまを叩いた方が勝ち！叩かれたら負け！<br>
+                叩かれないようにシールドで守ろう。
+            </p>
+            <p class="game-desc">
+                がめんのサイズ調整がうまくいかず。スマホだとがめん小さすぎてやりにくいかも。
+            </p>
+
+            <!-- a、トップページへのリンク -->
+            <a href="../index.html" id="top-link">トップページに戻る</a>
+        </div>
+
+    </div>
+
+    <!-- ##################################################### -->
+    <!-- footer(page-footer)、コピーライトのフッター -->
+    <footer id="page-footer">
+        <p>&copy; 2026 nonbiri-yama. All rights reserved.</p>
+    </footer>
+
+    <script src="./src/layout.js" defer></script>
+    <script type="module" src="./src/main.js"></script>
+
+</body>
+</html>

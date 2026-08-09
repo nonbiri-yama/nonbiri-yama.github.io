@@ -1,0 +1,86 @@
+ <!-- © 2026 nonbiri-yama. All rights reserved.
+[商業利用・無断転載の禁止]
+本ソースコード、および関連するアセット（画像等）の無断複写、複製、転載、
+改変、配布、スクレイピング、および二次利用を固く禁じます。 -->
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>nonbiri-yama のゲーム</title>
+    <link rel="stylesheet" href="./ad.css">
+</head>
+<body>
+
+    <div id="ad-header">
+        <span class="site-name">nonbiri-yama のゲーム</span>
+    </div>
+
+    <div id="ad-area">
+        <span class="ad-label">広告</span>
+        <div id="ad-slot">
+            <!--
+                AdSenseのコードをここに貼る。
+                例：
+                <ins class="adsbygoogle" ...></ins>
+                <script>...</script>
+            -->
+            AdSense広告エリア
+        </div>
+    </div>
+
+    <div id="return-area">
+        <div id="countdown">もうすぐゲームに戻れます...</div>
+        <button id="return-btn">ゲームにもどる</button>
+    </div>
+
+    <div id="ad-footer">
+        &copy; 2026 nonbiri-yama. All rights reserved.
+    </div>
+
+    <script>
+    (function () {
+        // ---- ページ全体の誤クリック防止（最初の2秒間は一切反応させない） ----
+        let globalUnlocked = false;
+        document.addEventListener('click',     (e) => { if (!globalUnlocked) e.stopPropagation(); }, true);
+        document.addEventListener('touchstart',(e) => { if (!globalUnlocked) e.preventDefault();  }, { passive: false, capture: true });
+
+        // ---- 戻り先URLをsessionStorageから取得 ----
+        const returnUrl = sessionStorage.getItem('return_page') || './index.html';
+        sessionStorage.removeItem('return_page');
+
+        // ---- カウントダウン（3秒）----
+        const countdownEl = document.getElementById('countdown');
+        const returnBtn   = document.getElementById('return-btn');
+        const WAIT_SEC    = 3;
+        let remaining     = WAIT_SEC;
+
+        function tick() {
+            if (remaining > 0) {
+                countdownEl.textContent = `${remaining} 秒後にボタンが出現します`;
+                remaining--;
+                setTimeout(tick, 1000);
+            } else {
+                // カウントダウン終了 → グローバルロック解除 → ボタン表示
+                globalUnlocked       = true;
+                countdownEl.textContent = 'ゲームの準備ができました！';
+                returnBtn.style.display = 'block';
+            }
+        }
+
+        // グローバルロックは2秒、カウントダウン表示は3秒
+        // （広告のレイアウトシフトが落ち着くまでの猶予）
+        setTimeout(() => { globalUnlocked = false; }, 0); // 念のため初期化
+        setTimeout(tick, 100); // 少し遅らせてから開始
+
+        // ---- ゲームに戻るボタン ----
+        returnBtn.addEventListener('click', () => {
+            location.href = returnUrl;
+        });
+
+    })();
+    </script>
+
+</body>
+</html>

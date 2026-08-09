@@ -1,0 +1,1 @@
+export class ScoreDisplay{constructor(t,e){this.rotationEl=t,this.speedEl=e}update(t,e){this.rotationEl.textContent=`かいてんのかず: ${t}`,this.speedEl.textContent=`かいてんのはやさ: ${Math.abs(e).toFixed(1)}`}}

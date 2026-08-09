@@ -1,0 +1,112 @@
+/* © 2026 nonbiri-yama. All rights reserved.
+[商業利用・無断転載の禁止]
+本ソースコード、および関連するアセット（画像等）の無断複写、複製、転載、
+改変、配布、スクレイピング、および二次利用を固く禁じます。 */
+
+* {
+    box-sizing: border-box;
+    margin: 0; padding: 0;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+body {
+    background-color: #f7f5eb;
+    color: #4a3b32;
+    font-family: "Hiragino Maru Gothic ProN", "Yu Gothic UI", "Meiryo UI", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* ---- ヘッダー ---- */
+#ad-header {
+    width: 100%;
+    max-width: 480px;
+    padding: 20px 16px 12px;
+    text-align: center;
+}
+#ad-header .site-name {
+    font-size: 15px;
+    font-weight: bold;
+    color: #2d3250;
+}
+
+/* ---- 広告エリア ---- */
+#ad-area {
+    width: 100%;
+    max-width: 480px;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+.ad-label {
+    font-size: 11px;
+    color: #8a817c;
+    align-self: flex-start;
+}
+#ad-slot {
+    width: 100%;
+    min-height: 250px;
+    background-color: #fef5d1;
+    border: 1px solid #d0caa7;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8a817c;
+    font-size: 14px;
+}
+
+/* ---- カウントダウン・戻るボタンエリア ---- */
+#return-area {
+    width: 100%;
+    max-width: 480px;
+    padding: 32px 16px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#countdown {
+    font-size: 18px;
+    color: #60554f;
+    font-weight: bold;
+    min-height: 28px;
+}
+
+#return-btn {
+    display: none; /* カウントダウン中は非表示 */
+    padding: 14px 40px;
+    font-size: 18px;
+    font-family: inherit;
+    font-weight: bold;
+    background-color: #2d3250;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    /* 指が当たりにくいよう十分な大きさを確保 */
+    min-width: 200px;
+    min-height: 56px;
+}
+#return-btn:active {
+    opacity: 0.75;
+}
+
+/* ---- フッター ---- */
+#ad-footer {
+    margin-top: auto;
+    padding: 16px;
+    font-size: 12px;
+    color: #8a817c;
+    text-align: center;
+}

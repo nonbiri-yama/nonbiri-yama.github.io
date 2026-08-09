@@ -1,0 +1,1 @@
+import{Game}from"./Game.js";window.addEventListener("DOMContentLoaded",()=>{new Game({vsMode:"cpu",cpuLevel:2}).start()});

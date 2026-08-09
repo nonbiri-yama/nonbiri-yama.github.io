@@ -1,0 +1,224 @@
+/* © 2026 nonbiri-yama. All rights reserved.
+[商業利用・無断転載の禁止]
+本ソースコード、および関連するアセット（画像等）の無断複写、複製、転載、
+改変、配布、スクレイピング、および二次利用を固く禁じます。 */
+
+* {
+    box-sizing: border-box;
+    margin: 0; padding: 0;
+    overscroll-behavior-y: contain;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* ##################################################### */
+/* bodyタグ、headを除く末尾まですべて */
+body {
+    background-color: #f7f5eb;
+    color: #4a3b32;
+    font-family: "Hiragino Maru Gothic ProN", "Yu Gothic UI", "Meiryo UI", sans-serif;
+    display: flex;
+    align-items: center;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    flex-direction: column;
+}
+
+/* ##################################################### */
+/* div(game-container)、人形とコントロールバーのエリア */
+#game-container {
+    position: absolute;
+    top: 0; left: 0;
+    width: 800px; /*（論理解像度 800×500 固定） */
+    height: 500px;
+    background-color: #ffffff;
+    border: 3px solid #000;
+    overflow: hidden;
+    transform-origin: top left;
+}
+#game-canvas {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+}
+#ui-layer {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* div(container-1p)、左のコントローラバー */
+/* div(container-2p)、右のコントローラバー */
+.slider-container {
+    position: absolute;
+    bottom: 10%;
+    height: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+#container-1p { left: 3%; }
+#container-2p { right: 3%; }
+
+.label-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+.key-icon {
+    display: inline-block;
+    font-family: monospace;
+    font-size: 11px;
+    font-weight: bold;
+    color: #333;
+    background: #f0f0f0;
+    border: 1.5px solid #999;
+    border-bottom: 3px solid #777;
+    border-radius: 3px;
+    padding: 1px 5px;
+    line-height: 1.4;
+    box-shadow: 2px 2px 0 #bbb;
+}
+.label-guard  { color: #000; font-weight: bold; font-size: 12px; }
+.label-attack { color: #000; font-weight: bold; font-size: 12px; }
+
+.controller-track {
+    width: 12px;
+    flex-grow: 1;
+    background-color: #e2edd5;
+    border: 2px solid #a4c77d;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    pointer-events: auto;
+}
+.slider-thumb {
+    position: absolute; top: 0;
+    width: 44px; height: 22px;
+    background-color: #4a86e8;
+    border: 2px solid #000;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 人形のデザインはstyle_doll.cssで定義 */
+
+/* div(pedestal)、台座 */
+#pedestal {
+    position: absolute; bottom: 0;
+    left: 20%; width: 60%; height: 6%;
+    background-color: #d9ead3;
+    border: 2px solid #38761d;
+    border-bottom: none;
+}
+   
+/* ##################################################### */
+/* div(sub-area)、ゲーム説明 */
+#sub-area {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 16px;
+    gap: 0;
+}
+
+/* div(sub-card)、対戦相手と強さの設定 */
+.sub-card {
+    background-color: #f7f5eb;
+    border: 2px solid #d0caa7;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.setting-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.setting-label {
+    font-size: 16px;
+    color: #60554f;
+    min-width: 80px;
+    font-weight: bold;
+}
+.setting-btns {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.game-btn {
+    padding: 7px 16px;
+    font-size: 16px;
+    font-family: inherit;
+    font-weight: bold;
+    border: 2px solid #2d3250;
+    border-radius: 4px;
+    background-color: #f7f5eb;
+    color: #2d3250;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.game-btn:active { /* :activeと.activeで異なるのでマージ不可 */
+    opacity: 0.7;
+}
+.game-btn.active {
+    background-color: #2d3250;
+    color: #fff;
+}
+
+/* div(description-area)、ゲーム説明 */
+.description-area {
+    background-color: #f7f5eb;
+    border: 2px solid #d0caa7;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.game-desc {
+    font-size: 18px;
+    color: #4a3b32;
+    line-height: 1.7;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+/* a、トップページへのリンク */
+#top-link {
+    display: inline-block;
+    font-size: 18px;
+    color: #ff6f61;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 24px;
+    border: 2px solid #ff6f61;
+    border-radius: 24px;
+    transition: background-color 0.2s;
+    width: 180px;
+}
+#top-link:hover {
+    background-color: #ffe8e4;
+}
+
+/* ##################################################### */
+/* footer(page-footer)、コピーライトのフッター */
+
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #888;
+    flex-shrink: 0;
+}

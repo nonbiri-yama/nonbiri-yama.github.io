@@ -1,0 +1,255 @@
+/* © 2026 nonbiri-yama. All rights reserved.
+[商業利用・無断転載の禁止]
+本ソースコード、および関連するアセット（画像等）の無断複写、複製、転載、
+改変、配布、スクレイピング、および二次利用を固く禁じます。 */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* ##################################################### */
+/* bodyタグ、headを除く末尾まですべて */
+body {
+    background-color: #f7f5eb;
+    color: #4a3b32;
+    font-family: "Hiragino Maru Gothic ProN", "Yu Gothic UI", "Meiryo UI", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* div(top-container)、トップバナー */
+#top-container {
+    width: 100%;
+    max-width: 480px;
+    height: 100px;
+    background-color: #f7f5eb; 
+    overflow: hidden;
+    position: relative;
+
+}
+.top-banner {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: 1px solid #d0caa7;
+    border-radius: 6px;
+    background-color: #fcfbfa;
+    background-image: url('images/topbanner_960px100px_72dpi.png');
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: contain;
+}
+.banner-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 4px;
+    gap: 1px;
+    z-index: 2;
+}
+.banner-site-name {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2d3250;
+}
+.banner-url {
+    font-size: 16px;
+    color: #8a817c;
+    font-family: monospace;
+}
+.banner-visual {
+    width: 10px;
+    height: 100%;
+}
+
+/* p、このページの説明 */
+.notice-text {
+    width: 100%;
+    max-width: 480px;
+    padding: 20px 16px 4px;
+    font-size: 16px;
+    color: #4a3b32;
+    text-align: left;
+}
+
+main {
+    width: 100%;
+    max-width: 480px;
+    padding: 8px 16px 14px;
+}
+
+/* ##################################################### */
+/* div(game-card)、01_breakoutの説明 */
+/* div(game-card)、02_picopicoの説明 */
+.game-card {
+    background-color: #e2dfd2;
+    border: 2px solid #d0caa7;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* div(game-main-content)、説明とプレビュー画像を横並びにするためのもの */
+.game-main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* flex-start から center に変えると、縦の中央で綺麗に揃います */
+    gap: 14px;
+}
+
+/* div(game-info)、ゲームの説明 */
+.game-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* div(game-header-row)、ゲーム名の行 */
+.game-header-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.game-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2d3250;
+}
+.release-date {
+    font-size: 14px;
+    color: #60554f;
+}
+
+/* p、ゲームの説明 */
+.game-desc {
+    font-size: 16px;
+    color: #4a3b32;
+    line-height: 1.5;
+}
+.play-link {
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: 6px;
+    background-color: #2d3250;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px 18px;
+    border-radius: 4px;
+    transition: opacity 0.2s;
+}
+.play-link:active {
+    opacity: 0.8;
+}
+
+/* div(game-preview)、ゲーム画面 */
+.game-preview {
+    width: 100px;
+    height: 160px;
+    flex-shrink: 0;
+    background-color: #f7f5eb;
+    border: 1px solid #d0caa7;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 比率を保って枠内に収めます */
+}
+
+/* div(update-history)、更新履歴 */
+.update-history {
+    border-top: 1px dashed #4a3b32;
+    padding-top: 12px;
+}
+.update-history h2 {
+    font-size: 16px;
+    color: #2d3250;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+.update-history ul {
+    list-style: none;
+    font-size: 16px;
+    color: #60554f;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    line-height: 1.4;
+}
+
+/* ##################################################### */
+/* div(mysite-banner-bottom)、画面下方のバナー */
+#mysite-banner-bottom {
+    width: 100%;
+    max-width: 480px;
+    height: 50px;
+    background-color: #f7f5eb; 
+    overflow: hidden;
+    position: relative;
+    margin-top: 0px;
+}
+.mysite-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: 1px solid #d0caa7;
+    border-radius: 6px;
+    background-color: #fcfbfa;
+    background-image: url('images/topbanner_960px100px_72dpi.png');
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: contain;
+}
+.mysite-banner .banner-site-name {
+    font-size: 15px;
+    font-weight: bold;
+    color: #2d3250;
+}
+.mysite-banner .banner-url {
+    font-size: 11px;
+    color: #8a817c;
+    font-family: monospace;
+}
+
+/* ##################################################### */
+/* footer、フッター */
+footer {
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #8a817c;
+}
+

@@ -1,0 +1,4 @@
+# AdSenseの審査が通ったら、AdSense管理画面に表示される1行に差し替えてください。
+# 例: google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+# 2026/7/11, 更新
+google.com, pub-7521477764431646, DIRECT, f08c47fec0942fa0

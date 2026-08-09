@@ -1,0 +1,76 @@
+ <!-- © 2026 nonbiri-yama. All rights reserved.
+[商業利用・無断転載の禁止]
+本ソースコード、および関連するアセット（画像等）の無断複写、複製、転載、
+改変、配布、スクレイピング、および二次利用を固く禁じます。 -->
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<!-- headタグ、ブラウザのタブに表示される文字 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="人がぐるぐる回るだけのゲーム。回るとちょっと浮く！？">
+    <title>ぐるぐるわーい - のんびりやまのゲーム</title>
+    <link rel="stylesheet" href="style_layout.css">
+</head>
+
+<!-- ##################################################### -->
+<!-- bodyタグ、headを除く末尾まですべて -->
+<body>
+
+    <!-- ##################################################### -->
+    <!-- div(ad-container)、広告バナー、または、フォールバックバナー -->
+    <div id="ad-container">
+        <a href="https://nonbiri-yama.github.io/" class="fallback-banner">
+
+            <!-- div(banner-info)、バナー内の左側文字 -->
+            <div class="banner-info">
+                <span class="banner-site-name">のんびりやま のゲーム</span>
+                <span class="banner-url">https://nonbiri-yama.github.io/</span>
+            </div>
+            
+            <!-- div(banner-visual)、バナー内の右側イラスト -->
+            <div class="banner-visual"></div>
+        </a>
+    </div>
+
+    <!-- ##################################################### -->
+    <!-- div(game-wrapper)、ゲーム画面本体 -->
+    <div id="game-wrapper">
+        <div id="stage-container">
+            <canvas id="game-canvas" width="400" height="500"></canvas>
+        </div>
+    </div>
+
+    <!-- ##################################################### -->
+    <!-- div(status-display)、ステータス表示 -->
+    <div id="status-display">
+        <span id="rotation-count">かいてんのかず: 0</span>
+        <span id="float-height">かいてんのはやさ: 0.0</span>
+    </div>
+
+    <!-- ##################################################### -->
+    <!-- div(sub-area)、ゲーム説明 -->    
+    <div id="sub-area">
+
+        <!-- div(description-area)、ゲーム説明 -->
+        <div id="description-area">
+            <p>ただまわるだけ。</p>
+        </div>
+
+        <!-- a、トップページへのリンク -->
+        <a href="../index.html" id="top-link">トップへもどる</a>
+
+    </div>
+
+    <!-- ##################################################### -->
+    <!-- footer(page-footer)、コピーライトのフッター -->
+    <footer id="page-footer">
+        <p>&copy; 2026 nonbiri-yama. All rights reserved.</p>
+    </footer>
+
+    <script type="module" src="src/main.js"></script>
+
+</body>
+</html>

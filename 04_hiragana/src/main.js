@@ -1,0 +1,1 @@
+import{Game}from"./Game.js";window.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("game-canvas");new Game(e).start()});

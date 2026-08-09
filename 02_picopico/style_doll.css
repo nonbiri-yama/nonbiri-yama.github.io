@@ -1,0 +1,196 @@
+/* © 2026 nonbiri-yama. All rights reserved.
+[商業利用・無断転載の禁止]
+本ソースコード、および関連するアセット（画像等）の無断複写、複製、転載、
+改変、配布、スクレイピング、および二次利用を固く禁じます。 */
+
+ /* * 1P・2P 人形グラフィックのスタイル。
+ * 頭部は PNG 画像で差し替え済み。ハンマー・盾・関節は図形描画のまま。
+ *
+ * z-index 構造（前後関係）:
+ *   11 : 奥側の腕（1P=盾、2P=ハンマー）
+ *   12 : 奥側の関節円
+ *   20 : 頭・胴体（半透明）
+ *   21 : 胴体の外枠線
+ *   31 : 手前側の関節円
+ *   32 : 手前側の腕（1P=ハンマー、2P=盾） */
+
+/* ==================== 1P 人形（オレンジ） ==================== */
+
+#doll-1p {
+    position: absolute; bottom: 6%; left: 0;
+    width: 100%; height: 100%;
+}
+
+/* 盾腕（奥レイヤー） */
+#doll-1p .doll-shield {
+    position: absolute;
+    bottom: calc(22% + 16px); left: calc(36% + 16px);
+    width: 30%; height: 36%;
+    transform-origin: bottom left;
+    transform: rotate(0deg);
+    z-index: 11;
+}
+
+#doll-1p .shield-shaft {
+    position: absolute; bottom: 0; left: -4px;
+    width: 8px; height: 100%; /* shaft長はこのheightじゃなく.doll-shieldのheightで調整 */
+    background-color: #f2a02d; border: 1px solid #000;
+}
+#doll-1p .shield-plate {
+    position: absolute; top: 0; left: -60px;
+    width: 80px; height: 6px;
+    background-color: #f2a02d; border: 1px solid #000; border-radius: 3px;
+}
+#doll-1p .joint-shield {
+    position: absolute; bottom: 22%; left: 36%;
+    width: 32px; height: 32px;
+    background-color: #f2a02d; border: 2px solid #000; border-radius: 50%;
+    z-index: 12;
+}
+
+/* 頭部（PNG画像。内側を白で塗りつぶした透過PNG） */
+#doll-1p .doll-head {
+    position: absolute; bottom: 35%; left: 20%;
+    width: 23%; height: 25%;
+    z-index: 20;
+}
+#doll-1p .doll-head img {
+    width: 100%; height: 100%;
+    object-fit: fill;
+    display: block;
+}
+
+/* 当たり判定専用のかまぼこ型（透明・表示には影響しない） */
+#doll-1p .hitbox-head {
+    position: absolute;
+    bottom: 0; left: 0%;
+    width: 98%; height: 98%;
+    border-radius: 70% 110% 0 0;
+    /* デバッグ時は下の行のコメントを外すと赤く見える */
+    /* background: rgba(255,0,0,0.3); */
+}
+
+/* 胴体 */
+#doll-1p .doll-body {
+    position: absolute; bottom: 0; left: 20%;
+    width: 23%; height: 35%;
+    background-color: #f2a02d; opacity: 0.5; z-index: 20;
+}
+#doll-1p .doll-body-outline {
+    position: absolute; bottom: 0; left: 20%;
+    width: 23%; height: 35%;
+    background-color: transparent; border: 2px solid #000; z-index: 21;
+    pointer-events: none;
+}
+
+/* ハンマー腕（手前レイヤー） */
+#doll-1p .joint-hammer {
+    position: absolute; bottom: 15%; left: 25%;
+    width: 32px; height: 32px;
+    background-color: #f2a02d; border: 2px solid #000; border-radius: 50%; z-index: 31;
+}
+#doll-1p .doll-hammer {
+    position: absolute;
+    bottom: calc(15% + 16px); left: calc(25% + 16px);
+    width: 40%; height: 65%;
+    transform-origin: bottom left; transform: rotate(0deg); z-index: 32;
+}
+#doll-1p .hammer-shaft {
+    position: absolute; bottom: 0; left: -4px;
+    width: 8px; height: 100%; /* shaft長はこのheightじゃなく.doll-hammerのheightで調整 */
+    background-color: #f2a02d; border: 1px solid #000;
+}
+#doll-1p .hammer-head {
+    position: absolute; top: 0; left: -30px;
+    width: 80px; height: 30px;
+    background-color: #f2a02d; border: 2px solid #000; border-radius: 3px;
+}
+
+
+/* ==================== 2P 人形（青） ==================== */
+
+#doll-2p {
+    position: absolute; bottom: 6%; left: 0;
+    width: 100%; height: 100%;
+}
+
+/* ハンマー腕（奥レイヤー） */
+#doll-2p .doll-hammer {
+    position: absolute;
+    bottom: calc(15% + 16px); left: calc(70% + 16px);
+    width: 40%; height: 65%;
+    transform-origin: bottom left; transform: rotate(0deg); z-index: 11;
+}
+#doll-2p .hammer-shaft {
+    position: absolute; bottom: 0; left: -4px;
+    width: 8px; height: 100%; /* shaft長はこのheightじゃなく.doll-hammerのheightで調整 */
+    background-color: #2d82f2; border: 1px solid #000;
+}
+#doll-2p .hammer-head {
+    position: absolute; top: 0; left: -60px;
+    width: 80px; height: 30px;
+    background-color: #2d82f2; border: 2px solid #000; border-radius: 3px;
+}
+#doll-2p .joint-hammer {
+    position: absolute; bottom: 15%; left: 70%;
+    width: 32px; height: 32px;
+    background-color: #2d82f2; border: 2px solid #000; border-radius: 50%; z-index: 12;
+}
+
+/* 頭部（PNG画像。2Pは左右反転） */
+#doll-2p .doll-head {
+    position: absolute; bottom: 35%; left: 57%;
+    width: 23%; height: 25%;
+    z-index: 20;
+}
+#doll-2p .doll-head img {
+    width: 100%; height: 100%;
+    object-fit: fill;
+    display: block;
+    transform: scaleX(-1);
+}
+
+/* 当たり判定専用のかまぼこ型（透明・表示には影響しない） */
+#doll-2p .hitbox-head {
+    position: absolute;
+    bottom: 0; left: 0%;
+    width: 98%; height: 98%;
+    border-radius: 130% 70% 0 0;
+    /* background: rgba(255,0,0,0.3); */
+}
+
+/* 胴体 */
+#doll-2p .doll-body {
+    position: absolute; bottom: 0; left: 57%;
+    width: 23%; height: 35%;
+    background-color: #2d82f2; opacity: 0.5; z-index: 20;
+}
+#doll-2p .doll-body-outline {
+    position: absolute; bottom: 0; left: 57%;
+    width: 23%; height: 35%;
+    background-color: transparent; border: 2px solid #000; z-index: 21;
+    pointer-events: none;
+}
+
+/* 盾腕（手前レイヤー） */
+#doll-2p .joint-shield {
+    position: absolute; bottom: 22%; left: 60%;
+    width: 32px; height: 32px;
+    background-color: #2d82f2; border: 2px solid #000; border-radius: 50%; z-index: 31;
+}
+#doll-2p .doll-shield {
+    position: absolute;
+    bottom: calc(22% + 16px); left: calc(60% + 16px);
+    width: 30%; height: 36%;
+    transform-origin: bottom left; transform: rotate(0deg); z-index: 32;
+}
+#doll-2p .shield-shaft {
+    position: absolute; bottom: 0; left: -4px;
+    width: 8px; height: 100%; /* shaft長はこのheightじゃなく.doll-shieldのheightで調整 */
+    background-color: #2d82f2; border: 1px solid #000;
+}
+#doll-2p .shield-plate {
+    position: absolute; top: 0; left: -20px;
+    width: 80px; height: 6px;
+    background-color: #2d82f2; border: 1px solid #000; border-radius: 3px;
+}

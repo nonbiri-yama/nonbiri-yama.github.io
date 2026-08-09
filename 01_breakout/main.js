@@ -1,0 +1,1 @@
+import GameManager from"./GameManager.js";const runGame=()=>{const e=new GameManager;e.init(),e.start()};"loading"===document.readyState?document.addEventListener("DOMContentLoaded",runGame):runGame();
